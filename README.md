@@ -46,7 +46,7 @@ Esta aplicación permite la búsqueda de información básica de clientes ingres
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/juanFajardo9999/client-front.git
+   git clone https://github.com/juanFajardo9999/api-client-front.git
 2. **Ejecutar la aplicación**
    ```bash
    ng s 
