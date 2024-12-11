@@ -1,0 +1,17 @@
+<div *ngIf="isVisible" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger">Error</h5>
+        </div>
+        <div class="modal-body">
+          <p><strong>Mensaje:</strong> {{ errorMessage.error }}</p>
+          <p><strong>Detalles:</strong> {{ errorMessage.message }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

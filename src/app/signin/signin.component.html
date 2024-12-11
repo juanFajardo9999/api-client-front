@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <form [formGroup]="form" class="p-4 border rounded">
+    <div class="text-muted mb-4">Todos los campos son obligatorios</div>
+
+    <!-- Tipo de documento -->
+    <div class="mb-3">
+      <label for="tipoDocumento" class="form-label fw-bold">Tipo de documento</label>
+      <select
+        id="tipoDocumento"
+        class="form-select"
+        formControlName="tipoDocumento"
+      >
+        <option value="">Seleccione...</option>
+        <option value="C">Cédula de ciudadanía</option>
+        <option value="P">Pasaporte</option>
+      </select>
+      <div
+        *ngIf="form.get('tipoDocumento')?.invalid && form.get('tipoDocumento')?.touched"
+        class="text-danger small"
+      >
+        Debe seleccionar un tipo de documento.
+      </div>
+    </div>
+
+    <!-- Número de documento -->
+    <div class="mb-3">
+      <label for="numeroDocumento" class="form-label fw-bold">Número de documento</label>
+      <input
+        id="numeroDocumento"
+        type="text"
+        class="form-control"
+        formControlName="numeroDocumento"
+        placeholder="Ingrese el numero de documento"
+        (input)="formatDocumentNumber($event)"
+      />
+      <div
+        *ngIf="form.get('numeroDocumento')?.hasError('required') && form.get('numeroDocumento')?.touched"
+        class="text-danger small"
+      >
+        El número de documento es obligatorio.
+      </div>
+      <div
+        *ngIf="form.get('numeroDocumento')?.hasError('pattern') && form.get('numeroDocumento')?.touched"
+        class="text-danger small"
+      >
+        El número de documento debe contener entre 8 y 11 dígitos.
+      </div>
+    </div>
+
+    <!-- Botón Buscar -->
+    <div class="d-grid">
+      <button
+        type="button"
+        class="btn fw-bold"
+        [ngClass]="{
+          'btn-primary': !isButtonDisabled(),
+          'btn-light text-muted': isButtonDisabled()
+        }"
+        [disabled]="isButtonDisabled()"
+        (click)="search(errorModal)"
+      >
+        Buscar
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Componente Modal -->
+<app-error-modal #errorModal [errorMessage]="errorMessage"></app-error-modal>
